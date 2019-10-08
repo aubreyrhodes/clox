@@ -6,4 +6,4 @@ clox: $(obj)
 
 .PHONY: clean
 clean:
-	rm -f *.o clox
+	@rm -f *.o clox
