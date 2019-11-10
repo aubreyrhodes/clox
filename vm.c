@@ -1,4 +1,5 @@
 #include "common.h"
+#include "compiler.h"
 #include "vm.h"
 
 #ifdef DEBUG_TRACE_EXECUTION
@@ -83,10 +84,9 @@ static InterpreterResult run() {
 #undef READ_BYTE
 }
 
-InterpreterResult interpret(Chunk* chunk) {
-  vm.chunk = chunk;
-  vm.ip = vm.chunk->code;
-  return run();
+InterpreterResult interpret(const char* source) {
+  compile(source);
+  return INTERPRET_OK;
 }
 
 void push(Value value) {
