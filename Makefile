@@ -2,7 +2,7 @@ src = $(wildcard *.c)
 obj = $(src:.c=.o)
 
 clox: $(obj)
-	$(CC) -o $@ $^
+	$(CC) -g -o $@ $^
 
 .PHONY: clean
 clean:
