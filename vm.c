@@ -57,9 +57,11 @@ static void runtimeError(const char* format, ...) {
 void initVM() {
   resetStack();
   vm.objects = NULL;
+  initTable(&vm.strings);
 }
 
 void freeVM() {
+  freeTable(&vm.strings);
   freeObjects();
 }
 
@@ -145,7 +147,7 @@ static InterpreterResult run() {
         break;
       }
       case OP_NIL: {
-        push(NIL_VAL());
+        push(NIL_VAL);
         break;
       }
       case OP_NOT: {

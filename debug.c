@@ -2,6 +2,7 @@
 
 #include "debug.h"
 #include "value.h"
+#include "object.h"
 
 void disassembleChunk(Chunk* chunk, const char* name) {
   printf("== %s ==\n", name);
@@ -22,6 +23,19 @@ static int constantInstruction(const char* name, Chunk* chunk, int offset) {
   printValue(chunk->constants.values[constant]);
   printf("'\n");
   return offset + 2;
+}
+
+void displayTable(Table* table) {
+  for(int i = 0; i < table->capacity; i++) {
+    printf("%04d ", i);
+    printf("   | ");
+    if (table->entries[i].key != NULL) {
+      printf("%s\n", table->entries[i].key->chars);
+    } else {
+      printf("(null)\n");
+    }
+  }
+  printf("\n");
 }
 
 int disassembleInstruction(Chunk* chunk, int offset) {
