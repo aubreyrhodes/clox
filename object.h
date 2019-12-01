@@ -24,7 +24,7 @@ struct sObjString {
   Obj obj;
   int length;
   uint32_t hash;
-  char chars[];
+  char* chars;
 };
 
 ObjString* copyString(const char* chars, int length);
